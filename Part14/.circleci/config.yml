@@ -12,10 +12,10 @@ jobs:
             virtualenv venv
             . venv/bin/activate
             pip install --upgrade pip
-            pip install -r packages/regression_model/requirements.txt
-            chmod +x ./scripts/fetch_kaggle_dataset.sh
-            ./scripts/fetch_kaggle_dataset.sh
-            py.test -vv packages/regression_model/tests
+            pip install -r Part14/packages/regression_model/requirements.txt
+            chmod +x ./Part14/scripts/fetch_kaggle_dataset.sh
+            ./Part14/scripts/fetch_kaggle_dataset.sh
+            py.test -vv Part14/packages/regression_model/tests
 
   test_ml_api:
     working_directory: ~/project
@@ -29,8 +29,8 @@ jobs:
             virtualenv venv
             . venv/bin/activate
             pip install --upgrade pip
-            pip install -r packages/ml_api/requirements.txt
-            py.test -vv packages/ml_api/tests
+            pip install -r Part14/packages/ml_api/requirements.txt
+            py.test -vv Part14/packages/ml_api/tests
 
   train_and_upload_regression_model:
     working_directory: ~/project
@@ -43,15 +43,15 @@ jobs:
           command: |
             virtualenv venv
             . venv/bin/activate
-            pip install -r packages/regression_model/requirements.txt
+            pip install -r Part14/packages/regression_model/requirements.txt
       - run: 
           name: Publish model
           command: |
             . venv/bin/activate
-            chmod +x ./scripts/fetch_kaggle_dataset.sh ./scripts/publish_model.sh
-            ./scripts/fetch_kaggle_dataset.sh
-            PYTHONPATH=./packages/regression_model python3 packages/regression_model/regression_model/train_pipeline.py
-            ./scripts/publish_model.sh ./packages/regression_model/
+            chmod +x ./Part14/scripts/fetch_kaggle_dataset.sh ./Part14/scripts/publish_model.sh
+            ./Part14/scripts/fetch_kaggle_dataset.sh
+            PYTHONPATH=./Part14/packages/regression_model python3 packages/regression_model/regression_model/train_pipeline.py
+            ./Part14/scripts/publish_model.sh ./packages/regression_model/
 
 workflows:
   version: 2

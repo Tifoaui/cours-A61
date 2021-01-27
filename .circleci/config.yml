@@ -13,9 +13,9 @@ jobs:
             . venv/bin/activate
             pip install --upgrade pip
             pip install -r Part13/packages/regression_model/requirements.txt
-            chmod +x ./scripts/fetch_kaggle_dataset.sh
+            chmod +x ./Part13/scripts/fetch_kaggle_dataset.sh
             ./Part13/scripts/fetch_kaggle_dataset.sh
-            py.test -vv packages/regression_model/tests
+            py.test -vv Part13/packages/regression_model/tests
 
 workflows:
   version: 2
